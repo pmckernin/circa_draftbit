@@ -1,25 +1,20 @@
 class VisitsController < ApplicationController
   before_action :set_visit, only: %i[show edit update destroy]
 
-  # GET /visits
   def index
     @q = Visit.ransack(params[:q])
     @visits = @q.result(distinct: true).includes(:user,
                                                  :location).page(params[:page]).per(10)
   end
 
-  # GET /visits/1
   def show; end
 
-  # GET /visits/new
   def new
     @visit = Visit.new
   end
 
-  # GET /visits/1/edit
   def edit; end
 
-  # POST /visits
   def create
     @visit = Visit.new(visit_params)
 
@@ -35,7 +30,6 @@ class VisitsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /visits/1
   def update
     if @visit.update(visit_params)
       redirect_to @visit, notice: "Visit was successfully updated."
@@ -44,7 +38,6 @@ class VisitsController < ApplicationController
     end
   end
 
-  # DELETE /visits/1
   def destroy
     @visit.destroy
     message = "Visit was successfully deleted."
@@ -57,12 +50,10 @@ class VisitsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_visit
     @visit = Visit.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def visit_params
     params.require(:visit).permit(:user_id, :location_id)
   end
