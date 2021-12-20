@@ -42,8 +42,14 @@ class SavedPlacesController < ApplicationController
   # DELETE /saved_places/1
   def destroy
     @saved_place.destroy
-    redirect_to saved_places_url, notice: 'Saved place was successfully destroyed.'
+    message = "SavedPlace was successfully deleted."
+    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referrer, notice: message
+    else
+      redirect_to saved_places_url, notice: message
+    end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

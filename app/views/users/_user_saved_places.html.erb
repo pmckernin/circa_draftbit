@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Saved Places
+
+    <a data-toggle="collapse" href="#user_saved_places_new_form">
+      Add saved place
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @user.saved_places.each do |saved_place| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <!-- Show link start -->
+        <%= link_to saved_place, saved_place %>
+        <!-- Show link end -->
+
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="user_saved_places_new_form">
+        <!-- New associationcollection form start -->
+
+        <!-- New associationcollection form end -->
+      </div>
+    </div>
+
+  </ul>
+</div>
