@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notes
   resources :saved_places
   devise_for :users
   resources :users
