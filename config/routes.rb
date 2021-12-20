@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pins
   resources :places
   resources :notes
   resources :saved_places
