@@ -8,6 +8,10 @@ class PlacesController < ApplicationController
 
   # GET /places/1
   def show
+    @visit = Visit.new
+    @pin = Pin.new
+    @note = Note.new
+    @saved_place = SavedPlace.new
   end
 
   # GET /places/new

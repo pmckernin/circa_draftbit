@@ -1,0 +1,22 @@
+<!-- Form visit start -->
+<%= form_with(model: @visit, local: true) do |f| %>
+<!-- Form visit end -->
+
+  <!-- Label and input for user_id start -->
+  <!-- Input for user_id start -->
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <!-- Input for user_id end -->
+  <!-- Label and input for user_id end -->
+
+  <!-- Label and input for location_id start -->
+  <div class="form-group">
+    <%= f.label :location_id %>
+
+    <!-- Input for location_id start -->
+    <%= f.text_field :location_id, class: "form-control" %>
+    <!-- Input for location_id end -->
+  </div>
+  <!-- Label and input for location_id end -->
+
+  <%= f.submit "Create visit", class: "btn btn-block btn-outline-secondary" %>
+<% end %>

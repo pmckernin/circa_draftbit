@@ -24,7 +24,12 @@ class PinsController < ApplicationController
     @pin = Pin.new(pin_params)
 
     if @pin.save
-      redirect_to @pin, notice: 'Pin was successfully created.'
+      message = 'Pin was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @pin, notice: message
+      end
     else
       render :new
     end

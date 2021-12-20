@@ -24,7 +24,12 @@ class SavedPlacesController < ApplicationController
     @saved_place = SavedPlace.new(saved_place_params)
 
     if @saved_place.save
-      redirect_to @saved_place, notice: 'Saved place was successfully created.'
+      message = 'SavedPlace was successfully created.'
+      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referrer, notice: message
+      else
+        redirect_to @saved_place, notice: message
+      end
     else
       render :new
     end
