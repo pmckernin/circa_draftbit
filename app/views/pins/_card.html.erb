@@ -7,12 +7,20 @@
     <dl class="mb-1">
       <dt>User</dt>
       <!-- Display user_id start -->
-      <dd><%= pin.user_id %></dd>
+      <dd>
+        <% if @pin.user.present? %>
+          <%= link_to pin.user, pin.user %>
+        <% end %>
+      </dd>
       <!-- Display user_id end -->
 
       <dt>Place</dt>
       <!-- Display place_id start -->
-      <dd><%= pin.place_id %></dd>
+      <dd>
+        <% if @pin.place.present? %>
+          <%= link_to pin.place, pin.place %>
+        <% end %>
+      </dd>
       <!-- Display place_id end -->
 
     </dl>
