@@ -6,22 +6,18 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>User</dt>
-      <!-- Display user_id start -->
       <dd>
         <% if @note.user.present? %>
           <%= link_to note.user, note.user %>
         <% end %>
       </dd>
-      <!-- Display user_id end -->
 
       <dt>Place</dt>
-      <!-- Display place_id start -->
       <dd>
         <% if @note.place.present? %>
           <%= link_to note.place, note.place %>
         <% end %>
       </dd>
-      <!-- Display place_id end -->
 
     </dl>
 
@@ -30,7 +26,6 @@
         <%= link_to_show_or_back note, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link note start -->
       <div class="col">
         <% if current_user == @note.user %>
           <%= link_to edit_note_url(note), class: "btn btn-block btn-sm btn-outline-secondary" do %>
@@ -38,9 +33,7 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Edit link note end -->
 
-      <!-- Delete link note start -->
       <div class="col">
         <% if current_user == @note.user %>
           <%= link_to note, method: :delete, data: { confirm: "Do you really want to delete this note?" }, class: "btn btn-block btn-outline-secondary" do %>
@@ -48,7 +41,6 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Delete link note end -->
     </div>
   </div>
 

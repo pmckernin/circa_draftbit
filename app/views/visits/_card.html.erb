@@ -6,22 +6,18 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>User</dt>
-      <!-- Display user_id start -->
       <dd>
         <% if @visit.user.present? %>
           <%= link_to visit.user, visit.user %>
         <% end %>
       </dd>
-      <!-- Display user_id end -->
 
       <dt>Location</dt>
-      <!-- Display location_id start -->
       <dd>
         <% if @visit.location.present? %>
           <%= link_to visit.location, visit.location %>
         <% end %>
       </dd>
-      <!-- Display location_id end -->
 
     </dl>
 
@@ -30,21 +26,17 @@
         <%= link_to_show_or_back visit, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link visit start -->
       <div class="col">
         <%= link_to edit_visit_url(visit), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link visit end -->
 
-      <!-- Delete link visit start -->
       <div class="col">
         <%= link_to visit, method: :delete, data: { confirm: "Do you really want to delete this visit?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link visit end -->
     </div>
   </div>
 

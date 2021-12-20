@@ -1,18 +1,8 @@
-<!-- Form note start -->
 <%= form_with(model: @note, local: true) do |f| %>
-<!-- Form note end -->
 
-  <!-- Label and input for user_id start -->
-  <!-- Input for "user_id" start -->
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <!-- Input for "user_id" end -->
-  <!-- Label and input for user_id end -->
 
-  <!-- Label and input for place_id start -->
-  <!-- Input for place_id start -->
   <%= f.hidden_field :place_id, value: @place.id %>
-  <!-- Input for place_id end -->
-  <!-- Label and input for place_id end -->
 
   <%= f.submit "Create note", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

@@ -6,22 +6,18 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>User</dt>
-      <!-- Display user_id start -->
       <dd>
         <% if @pin.user.present? %>
           <%= link_to pin.user, pin.user %>
         <% end %>
       </dd>
-      <!-- Display user_id end -->
 
       <dt>Place</dt>
-      <!-- Display place_id start -->
       <dd>
         <% if @pin.place.present? %>
           <%= link_to pin.place, pin.place %>
         <% end %>
       </dd>
-      <!-- Display place_id end -->
 
     </dl>
 
@@ -30,21 +26,17 @@
         <%= link_to_show_or_back pin, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link pin start -->
       <div class="col">
         <%= link_to edit_pin_url(pin), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link pin end -->
 
-      <!-- Delete link pin start -->
       <div class="col">
         <%= link_to pin, method: :delete, data: { confirm: "Do you really want to delete this pin?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link pin end -->
     </div>
   </div>
 

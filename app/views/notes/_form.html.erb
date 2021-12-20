@@ -1,12 +1,7 @@
 <% was_validated = note.errors.any? %>
 
 <%= form_with(model: note, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for user_id start -->
-  <!-- Input for "user_id" start -->
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <!-- Input for "user_id" end -->
-  <!-- Label and input for user_id end -->
-  <!-- Label and input for place_id start -->
   <div class="form-group">
     <% place_class = "form-control" %>
     <% place_was_invalid = note.errors.include?(:place) %>
@@ -20,9 +15,7 @@
     <% end %>
 
     <%= f.label :place_id %>
-    <!-- Input for place_id start -->
     <%= f.collection_select :place_id, Place.all, :id, :to_s, {}, class: "form-control" %>
-    <!-- Input for place_id end -->
     <% if place_was_invalid %>
       <% note.errors.full_messages_for(:place).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -31,6 +24,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for place_id end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

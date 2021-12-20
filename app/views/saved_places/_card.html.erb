@@ -6,22 +6,18 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>Place</dt>
-      <!-- Display place_id start -->
       <dd>
         <% if @saved_place.place.present? %>
           <%= link_to saved_place.place, saved_place.place %>
         <% end %>
       </dd>
-      <!-- Display place_id end -->
 
       <dt>User</dt>
-      <!-- Display user_id start -->
       <dd>
         <% if @saved_place.user.present? %>
           <%= link_to saved_place.user, saved_place.user %>
         <% end %>
       </dd>
-      <!-- Display user_id end -->
 
     </dl>
 
@@ -30,21 +26,17 @@
         <%= link_to_show_or_back saved_place, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link saved_place start -->
       <div class="col">
         <%= link_to edit_saved_place_url(saved_place), class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-edit"></i>
         <% end %>
       </div>
-      <!-- Edit link saved_place end -->
 
-      <!-- Delete link saved_place start -->
       <div class="col">
         <%= link_to saved_place, method: :delete, data: { confirm: "Do you really want to delete this saved_place?" }, class: "btn btn-block btn-outline-secondary" do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
-      <!-- Delete link saved_place end -->
     </div>
   </div>
 
