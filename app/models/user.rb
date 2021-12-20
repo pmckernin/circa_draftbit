@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :pins,
+             :dependent => :destroy
+
   has_many   :saved_places,
              :dependent => :destroy
 

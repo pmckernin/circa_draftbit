@@ -4,6 +4,8 @@ RSpec.describe User, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:pins) }
+
     it { should have_many(:saved_places) }
 
     it { should have_many(:notes) }
