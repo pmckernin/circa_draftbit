@@ -7,6 +7,9 @@ class PlaceResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :visits,
+             foreign_key: :location_id
+
   has_many   :pins
 
   has_many   :notes

@@ -7,6 +7,9 @@ class VisitResource < ApplicationResource
 
   # Direct associations
 
+  belongs_to :location,
+             resource: PlaceResource
+
   belongs_to :user
 
   # Indirect associations
