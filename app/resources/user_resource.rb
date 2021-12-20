@@ -7,6 +7,8 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :saved_places
+
   has_many   :notes
 
   # Indirect associations
