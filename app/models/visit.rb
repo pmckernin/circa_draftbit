@@ -2,7 +2,7 @@ class Visit < ApplicationRecord
   # Direct associations
 
   belongs_to :location,
-             :class_name => "Place"
+             class_name: "Place"
 
   belongs_to :user
 
@@ -15,5 +15,4 @@ class Visit < ApplicationRecord
   def to_s
     user.to_s
   end
-
 end

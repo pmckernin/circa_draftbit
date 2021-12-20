@@ -13,7 +13,7 @@ class Api::V1::SavedPlacesController < Api::V1::GraphitiController
     saved_place = SavedPlaceResource.build(params)
 
     if saved_place.save
-      render jsonapi: saved_place, status: 201
+      render jsonapi: saved_place, status: :created
     else
       render jsonapi_errors: saved_place
     end
@@ -33,7 +33,7 @@ class Api::V1::SavedPlacesController < Api::V1::GraphitiController
     saved_place = SavedPlaceResource.find(params)
 
     if saved_place.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: saved_place
     end

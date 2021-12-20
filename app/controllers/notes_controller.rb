@@ -1,17 +1,18 @@
 class NotesController < ApplicationController
-  before_action :current_user_must_be_note_user, only: [:edit, :update, :destroy] 
+  before_action :current_user_must_be_note_user,
+                only: %i[edit update destroy]
 
-  before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_note, only: %i[show edit update destroy]
 
   # GET /notes
   def index
     @q = Note.ransack(params[:q])
-    @notes = @q.result(:distinct => true).includes(:user, :place).page(params[:page]).per(10)
+    @notes = @q.result(distinct: true).includes(:user,
+                                                :place).page(params[:page]).per(10)
   end
 
   # GET /notes/1
-  def show
-  end
+  def show; end
 
   # GET /notes/new
   def new
@@ -19,17 +20,16 @@ class NotesController < ApplicationController
   end
 
   # GET /notes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /notes
   def create
     @note = Note.new(note_params)
 
     if @note.save
-      message = 'Note was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Note was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @note, notice: message
       end
@@ -41,7 +41,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   def update
     if @note.update(note_params)
-      redirect_to @note, notice: 'Note was successfully updated.'
+      redirect_to @note, notice: "Note was successfully updated."
     else
       render :edit
     end
@@ -51,30 +51,30 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     message = "Note was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to notes_url, notice: message
     end
   end
-
 
   private
 
   def current_user_must_be_note_user
     set_note
     unless current_user == @note.user
-      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+      redirect_back fallback_location: root_path,
+                    alert: "You are not authorized for that."
     end
   end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = Note.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def note_params
-      params.require(:note).permit(:user_id, :place_id)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def note_params
+    params.require(:note).permit(:user_id, :place_id)
+  end
 end

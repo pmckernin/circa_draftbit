@@ -16,5 +16,4 @@ class UserResource < ApplicationResource
   has_many   :notes
 
   # Indirect associations
-
 end

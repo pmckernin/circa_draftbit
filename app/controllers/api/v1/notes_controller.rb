@@ -13,7 +13,7 @@ class Api::V1::NotesController < Api::V1::GraphitiController
     note = NoteResource.build(params)
 
     if note.save
-      render jsonapi: note, status: 201
+      render jsonapi: note, status: :created
     else
       render jsonapi_errors: note
     end
@@ -33,7 +33,7 @@ class Api::V1::NotesController < Api::V1::GraphitiController
     note = NoteResource.find(params)
 
     if note.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: note
     end

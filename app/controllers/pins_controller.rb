@@ -1,15 +1,15 @@
 class PinsController < ApplicationController
-  before_action :set_pin, only: [:show, :edit, :update, :destroy]
+  before_action :set_pin, only: %i[show edit update destroy]
 
   # GET /pins
   def index
     @q = Pin.ransack(params[:q])
-    @pins = @q.result(:distinct => true).includes(:user, :place).page(params[:page]).per(10)
+    @pins = @q.result(distinct: true).includes(:user,
+                                               :place).page(params[:page]).per(10)
   end
 
   # GET /pins/1
-  def show
-  end
+  def show; end
 
   # GET /pins/new
   def new
@@ -17,17 +17,16 @@ class PinsController < ApplicationController
   end
 
   # GET /pins/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /pins
   def create
     @pin = Pin.new(pin_params)
 
     if @pin.save
-      message = 'Pin was successfully created.'
-      if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-        redirect_back fallback_location: request.referrer, notice: message
+      message = "Pin was successfully created."
+      if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+        redirect_back fallback_location: request.referer, notice: message
       else
         redirect_to @pin, notice: message
       end
@@ -39,7 +38,7 @@ class PinsController < ApplicationController
   # PATCH/PUT /pins/1
   def update
     if @pin.update(pin_params)
-      redirect_to @pin, notice: 'Pin was successfully updated.'
+      redirect_to @pin, notice: "Pin was successfully updated."
     else
       render :edit
     end
@@ -49,22 +48,22 @@ class PinsController < ApplicationController
   def destroy
     @pin.destroy
     message = "Pin was successfully deleted."
-    if Rails.application.routes.recognize_path(request.referrer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
-      redirect_back fallback_location: request.referrer, notice: message
+    if Rails.application.routes.recognize_path(request.referer)[:controller] != Rails.application.routes.recognize_path(request.path)[:controller]
+      redirect_back fallback_location: request.referer, notice: message
     else
       redirect_to pins_url, notice: message
     end
   end
 
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pin
-      @pin = Pin.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def pin_params
-      params.require(:pin).permit(:user_id, :place_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_pin
+    @pin = Pin.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def pin_params
+    params.require(:pin).permit(:user_id, :place_id)
+  end
 end

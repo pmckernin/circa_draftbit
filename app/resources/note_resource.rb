@@ -12,5 +12,4 @@ class NoteResource < ApplicationResource
   belongs_to :user
 
   # Indirect associations
-
 end

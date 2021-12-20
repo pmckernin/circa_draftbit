@@ -1,13 +1,13 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe SavedPlaceResource, type: :resource do
-  describe 'creating' do
+  describe "creating" do
     let(:payload) do
       {
         data: {
-          type: 'saved_places',
-          attributes: { }
-        }
+          type: "saved_places",
+          attributes: {},
+        },
       }
     end
 
@@ -15,23 +15,24 @@ RSpec.describe SavedPlaceResource, type: :resource do
       SavedPlaceResource.build(payload)
     end
 
-    it 'works' do
-      expect {
-        expect(instance.save).to eq(true), instance.errors.full_messages.to_sentence
-      }.to change { SavedPlace.count }.by(1)
+    it "works" do
+      expect do
+        expect(instance.save).to eq(true),
+                                 instance.errors.full_messages.to_sentence
+      end.to change { SavedPlace.count }.by(1)
     end
   end
 
-  describe 'updating' do
+  describe "updating" do
     let!(:saved_place) { create(:saved_place) }
 
     let(:payload) do
       {
         data: {
           id: saved_place.id.to_s,
-          type: 'saved_places',
-          attributes: { } # Todo!
-        }
+          type: "saved_places",
+          attributes: {}, # Todo!
+        },
       }
     end
 
@@ -39,25 +40,25 @@ RSpec.describe SavedPlaceResource, type: :resource do
       SavedPlaceResource.find(payload)
     end
 
-    xit 'works (add some attributes and enable this spec)' do
-      expect {
+    xit "works (add some attributes and enable this spec)" do
+      expect do
         expect(instance.update_attributes).to eq(true)
-      }.to change { saved_place.reload.updated_at }
+      end.to change { saved_place.reload.updated_at }
       # .and change { saved_place.foo }.to('bar') <- example
     end
   end
 
-  describe 'destroying' do
+  describe "destroying" do
     let!(:saved_place) { create(:saved_place) }
 
     let(:instance) do
       SavedPlaceResource.find(id: saved_place.id)
     end
 
-    it 'works' do
-      expect {
+    it "works" do
+      expect do
         expect(instance.destroy).to eq(true)
-      }.to change { SavedPlace.count }.by(-1)
+      end.to change { SavedPlace.count }.by(-1)
     end
   end
 end

@@ -17,5 +17,4 @@ class PlaceResource < ApplicationResource
   has_many   :saved_places
 
   # Indirect associations
-
 end

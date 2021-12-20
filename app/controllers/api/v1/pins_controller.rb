@@ -13,7 +13,7 @@ class Api::V1::PinsController < Api::V1::GraphitiController
     pin = PinResource.build(params)
 
     if pin.save
-      render jsonapi: pin, status: 201
+      render jsonapi: pin, status: :created
     else
       render jsonapi_errors: pin
     end
@@ -33,7 +33,7 @@ class Api::V1::PinsController < Api::V1::GraphitiController
     pin = PinResource.find(params)
 
     if pin.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: pin
     end

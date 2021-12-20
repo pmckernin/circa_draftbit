@@ -14,5 +14,4 @@ class SavedPlace < ApplicationRecord
   def to_s
     place.to_s
   end
-
 end

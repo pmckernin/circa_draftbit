@@ -2,17 +2,17 @@ class Place < ApplicationRecord
   # Direct associations
 
   has_many   :visits,
-             :foreign_key => "location_id",
-             :dependent => :destroy
+             foreign_key: "location_id",
+             dependent: :destroy
 
   has_many   :pins,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :notes,
-             :dependent => :destroy
+             dependent: :destroy
 
   has_many   :saved_places,
-             :dependent => :destroy
+             dependent: :destroy
 
   # Indirect associations
 
@@ -23,5 +23,4 @@ class Place < ApplicationRecord
   def to_s
     name
   end
-
 end

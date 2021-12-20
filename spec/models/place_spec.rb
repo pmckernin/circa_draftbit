@@ -1,9 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Place, type: :model do
-  
-    describe "Direct Associations" do
-
+  describe "Direct Associations" do
     it { should have_many(:visits) }
 
     it { should have_many(:pins) }
@@ -11,14 +9,11 @@ RSpec.describe Place, type: :model do
     it { should have_many(:notes) }
 
     it { should have_many(:saved_places) }
+  end
 
-    end
+  describe "InDirect Associations" do
+  end
 
-    describe "InDirect Associations" do
-
-    end
-
-    describe "Validations" do
-
-    end
+  describe "Validations" do
+  end
 end
