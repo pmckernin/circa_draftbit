@@ -3,7 +3,8 @@ class SavedPlacesController < ApplicationController
 
   # GET /saved_places
   def index
-    @saved_places = SavedPlace.page(params[:page]).per(10)
+    @q = SavedPlace.ransack(params[:q])
+    @saved_places = @q.result(:distinct => true).includes(:user, :place).page(params[:page]).per(10)
   end
 
   # GET /saved_places/1

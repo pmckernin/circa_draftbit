@@ -3,7 +3,8 @@ class PinsController < ApplicationController
 
   # GET /pins
   def index
-    @pins = Pin.page(params[:page]).per(10)
+    @q = Pin.ransack(params[:q])
+    @pins = @q.result(:distinct => true).includes(:user, :place).page(params[:page]).per(10)
   end
 
   # GET /pins/1

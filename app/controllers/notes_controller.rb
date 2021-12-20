@@ -5,7 +5,8 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.page(params[:page]).per(10)
+    @q = Note.ransack(params[:q])
+    @notes = @q.result(:distinct => true).includes(:user, :place).page(params[:page]).per(10)
   end
 
   # GET /notes/1

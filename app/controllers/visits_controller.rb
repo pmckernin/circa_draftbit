@@ -3,7 +3,8 @@ class VisitsController < ApplicationController
 
   # GET /visits
   def index
-    @visits = Visit.page(params[:page]).per(10)
+    @q = Visit.ransack(params[:q])
+    @visits = @q.result(:distinct => true).includes(:user, :location).page(params[:page]).per(10)
   end
 
   # GET /visits/1
