@@ -1,6 +1,9 @@
 class Visit < ApplicationRecord
   # Direct associations
 
+  belongs_to :location,
+             :class_name => "Place"
+
   belongs_to :user
 
   # Indirect associations

@@ -4,6 +4,8 @@ RSpec.describe Place, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:visits) }
+
     it { should have_many(:pins) }
 
     it { should have_many(:notes) }

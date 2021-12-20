@@ -1,6 +1,10 @@
 class Place < ApplicationRecord
   # Direct associations
 
+  has_many   :visits,
+             :foreign_key => "location_id",
+             :dependent => :destroy
+
   has_many   :pins,
              :dependent => :destroy
 
