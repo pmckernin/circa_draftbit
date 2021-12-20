@@ -4,6 +4,8 @@ RSpec.describe Place, type: :model do
   
     describe "Direct Associations" do
 
+    it { should have_many(:notes) }
+
     it { should have_many(:saved_places) }
 
     end
