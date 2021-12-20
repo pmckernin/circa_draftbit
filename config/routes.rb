@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "saved_places#index"
   resources :visits
   resources :pins
   resources :places
