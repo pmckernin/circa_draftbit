@@ -1,4 +1,6 @@
 class NotesController < ApplicationController
+  before_action :current_user_must_be_note_user, only: [:edit, :update, :destroy] 
+
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   # GET /notes
@@ -57,6 +59,14 @@ class NotesController < ApplicationController
 
 
   private
+
+  def current_user_must_be_note_user
+    set_note
+    unless current_user == @note.user
+      redirect_back fallback_location: root_path, alert: "You are not authorized for that."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find(params[:id])
