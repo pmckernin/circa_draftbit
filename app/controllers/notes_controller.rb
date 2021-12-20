@@ -5,7 +5,7 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.all
+    @notes = Note.page(params[:page]).per(10)
   end
 
   # GET /notes/1

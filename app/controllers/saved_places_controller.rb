@@ -3,7 +3,7 @@ class SavedPlacesController < ApplicationController
 
   # GET /saved_places
   def index
-    @saved_places = SavedPlace.all
+    @saved_places = SavedPlace.page(params[:page]).per(10)
   end
 
   # GET /saved_places/1
