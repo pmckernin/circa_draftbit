@@ -1,6 +1,9 @@
 class Place < ApplicationRecord
   # Direct associations
 
+  has_many   :pins,
+             :dependent => :destroy
+
   has_many   :notes,
              :dependent => :destroy
 
