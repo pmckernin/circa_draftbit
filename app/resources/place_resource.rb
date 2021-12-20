@@ -7,6 +7,8 @@ class PlaceResource < ApplicationResource
 
   # Direct associations
 
+  has_many   :notes
+
   has_many   :saved_places
 
   # Indirect associations
